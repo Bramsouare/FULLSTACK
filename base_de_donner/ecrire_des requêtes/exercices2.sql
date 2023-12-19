@@ -4,7 +4,7 @@ département.
 SELECT 
     ensemble.prenom,
     ensemble.noregion
-FROM
+    FROM
     (
         SELECT
             employe.prenom ,
