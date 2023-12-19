@@ -15,7 +15,6 @@ FROM
     ) 
     AS ensemble
 ;
-
 __________________________________________________________________________________________
 
 2. Rechercher le numéro du département, le nom du département, le
@@ -27,7 +26,7 @@ SELECT
 	unire.numerodep ,
 	unire.nomdep ,
     unire.nomemploye
-FROM
+    FROM
     (
         SELECT	
             employe.nodep AS numerodep,
@@ -41,7 +40,6 @@ FROM
     ) 
     AS unire
 ;
-
 __________________________________________________________________________________________
 
 3. Rechercher le nom des employés du département Distribution.
@@ -58,7 +56,6 @@ SELECT
     // filtre et affiche uniquement les nom = a Distribution
     dept.nom = 'Distribution'
 ;
-
 __________________________________________________________________________________________
 
 4. Rechercher le nom et le salaire des employés qui gagnent plus que
@@ -86,7 +83,6 @@ SELECT
     ) 
     AS plus
 ;
-
 __________________________________________________________________________________________
 
 5. Rechercher le nom et le titre des employés qui ont le même titre que
@@ -95,9 +91,9 @@ Amartakaldire.
 SELECT
 	employe.nom AS nom_employe ,
     employe.titre AS titre_employe
-FROM
-	employe
-WHERE
+    FROM
+	    employe
+    WHERE
 	employe.titre =
     (
         SELECT
@@ -108,9 +104,6 @@ WHERE
      	nom ='Amartakaldire'
     )
 ;
-	
-
-
 __________________________________________________________________________________________
 
 6. Rechercher le nom, le salaire et le numéro de département des
@@ -121,19 +114,19 @@ SELECT
     nom AS nom_employe ,
     salaire AS salaire_employe ,
     nodep AS numero_dep
-    FROM 
-        employe 
-    WHERE 
-        salaire > ANY
-        ( 
-            SELECT
-                salaire
-            FROM 
-                employe 
-            WHERE 
-            nodep = '31'
-        ) 
-    ORDER BY 
+        FROM 
+            employe 
+        WHERE 
+            salaire > ANY
+            ( 
+                SELECT
+                    salaire
+                FROM 
+                    employe 
+                WHERE 
+                nodep = '31'
+            ) 
+        ORDER BY 
     nodep ASC , salaire ASC
 ; 
 __________________________________________________________________________________________
@@ -146,22 +139,21 @@ SELECT
     nom AS nom_employe,
     salaire AS salaire_employe,
     nodep AS numero_dep
-    FROM 
-        employe 
-    WHERE 
-        salaire > ALL
-        ( 
-            SELECT
-                salaire
-            FROM 
-                employe 
-            WHERE 
+        FROM 
+            employe 
+        WHERE 
+            salaire > ALL
+            ( 
+                SELECT
+                    salaire
+                FROM 
+                    employe 
+                WHERE 
                 nodep = '31'
-        ) 
-    ORDER BY 
+            ) 
+        ORDER BY 
     nodep ASC, salaire ASC
 ;
-
 __________________________________________________________________________________________
 
 8. Rechercher le nom et le titre des employés du service 31 qui ont un
@@ -184,7 +176,6 @@ SELECT
         nodep = '32'
     )
 ;
-
 __________________________________________________________________________________________
 
 9. Rechercher le nom et le titre des employés du service 31 qui ont un
@@ -193,9 +184,9 @@ titre l''on ne trouve pas dans le département 32.
 SELECT
     nom AS nom_employe,
     titre AS titre_employe
-FROM
-    employe
-WHERE
+    FROM
+        employe
+    WHERE
     nodep = '31'
     AND titre NOT IN 
     (
@@ -207,8 +198,6 @@ WHERE
         nodep = '32'
     )
 ;
-
-
 __________________________________________________________________________________________
 
 10. Rechercher le nom, le titre et le salaire des employés qui ont le même
@@ -232,7 +221,6 @@ SELECT
         nom = 'Fairent'
     )
 ;
-
 __________________________________________________________________________________________
 
 11. Rechercher le numéro de département, le nom du département, le
@@ -241,40 +229,39 @@ il n''y a personne, classés par numéro de département.
 
 SELECT
     dept.nodept ,
-    dept.nom AS nom_departement ,
-    COALESCE(employe.nom, 'Aucun employé') AS nom_employe
-    FROM
-        dept LEFT JOIN employe 
-        ON dept.nodept = employe.nodep
-    ORDER BY
+        dept.nom AS nom_departement ,
+        COALESCE(employe.nom, 'Aucun employé') AS nom_employe
+        FROM
+            dept LEFT JOIN employe 
+            ON dept.nodept = employe.nodep
+        ORDER BY
     dept.nodept ASC
 ;
-
-_______________________________________________________________________________________________________________________________________________________________________________________________________
-
+____________________________________________________________________________________________________________________________________________________________________________________________________
 
 1. Calculer le nombre d''employés de chaque titre.
 
 SELECT
     titre,
-    COUNT(*) AS nombre_employes
-    FROM
-        employe
-    GROUP BY
+        COUNT(*) AS nombre_employes
+        FROM
+            employe
+        GROUP BY
     titre
 ;
+_______________________________________________________________________________________________
 
-________________________________________________________________________________________________
 2. Calculer la moyenne des salaires et leur somme, par région.
 
 SELECT
     nodep , AVG(salaire)
-    FROM
-	    employe 
-    GROUP by 
+        FROM
+            employe 
+        GROUP by 
     nodep 
 ;
 ________________________________________________________________________________________________
+
 3. Afficher les numéros des départements ayant au moins 3 employés.
 
 SELECT
@@ -286,6 +273,7 @@ SELECT
     HAVING COUNT(*) > 2
 ;
 ________________________________________________________________________________________________
+
 4. Afficher les lettres qui sont l''initiale d''au moins trois employés.
 
 SELECT
@@ -298,8 +286,8 @@ SELECT
     HAVING                              // filtre les résultats pour inclure uniquement les initiales avec au moins trois employés.
     COUNT(*) >= 3
 ;
-
 ________________________________________________________________________________________________
+
 5. Rechercher le salaire maximum et le salaire minimum parmi tous les
 salariés et l''écart entre les deux.
 
@@ -310,8 +298,8 @@ SELECT
     FROM
     employe
 ;
-
 ________________________________________________________________________________________________
+
 6. Rechercher le nombre de titres différents.
 
 SELECT
@@ -319,29 +307,63 @@ SELECT
     FROM
     employe
 ;
-
 ________________________________________________________________________________________________
+
 7. Pour chaque titre, compter le nombre d''employés possédant ce titre.
 
 SELECT
     titre,
-    COUNT(*) AS nombre_employes
-    FROM
-        employe
-    GROUP BY
+        COUNT(*) AS nombre_employes
+        FROM
+            employe
+        GROUP BY
     titre
 ;
-
 ________________________________________________________________________________________________
+
 8. Pour chaque nom de département, afficher le nom du département et
 le nombre d''employés.
 
-
+SELECT
+    dept.nom AS nom_dep ,
+        COUNT(*) AS nombre_employe
+        FROM
+            employe INNER JOIN dept
+            ON employe.nodep = dept.nodept
+        GROUP BY
+    dept.nom
+;
 ________________________________________________________________________________________________
+
 9. Rechercher les titres et la moyenne des salaires par titre dont la
 moyenne est supérieure à la moyenne des salaires des Représentants.
 
-
+SELECT
+    titre, AVG(salaire) AS moyenne_salaire
+    FROM
+        employe
+    GROUP BY
+        titre
+    HAVING
+        AVG(salaire) > 
+    (
+        SELECT 
+            AVG(salaire)
+        FROM
+            employe
+        WHERE
+        titre = 'représentant'
+    )   
+;
 ________________________________________________________________________________________________
+
 10.Rechercher le nombre de salaires renseignés et le nombre de taux de
 commission renseignés.
+
+SELECT
+    COUNT(*) AS nombre_salaire ,
+    COUNT(*) AS nombre_taux_com
+    FROM
+    employe
+;
+    
