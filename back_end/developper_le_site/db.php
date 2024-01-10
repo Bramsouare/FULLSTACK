@@ -38,20 +38,27 @@
             }
         
         ?>
+
         <br>
-            <?php
-                // parcourir le tableau et chaque élémentsera stocké dans la variable artist
-                foreach ($tableau as $artist):
-            ?>
+
+        <?php
+            // parcourir le tableau et chaque élémentsera stocké dans la variable artist
+            foreach ($tableau as $artist):
+        ?>
+
         <br>
-            <div>
-                <!-- affiche le nom de l'artiste -->
-                <?= $artist -> artist_name?>
-            </div>
+
+        <div>
+            <!-- affiche le nom de l'artiste -->
+            <?= $artist -> artist_name?>
+        </div>
+
         <br>
         
-        <!-- fin de la boucle -->
-        <?php endforeach; ?>
+        <?php 
+            //fin de la boucle
+            endforeach; 
+        ?>
 
     </body>
 </html>
