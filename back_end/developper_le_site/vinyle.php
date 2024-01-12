@@ -9,6 +9,8 @@
         // Indiquer à PDO de générer une exception à chaque fois qu'un problème est rencontré
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+        echo '<div class="alert alert-success disable">Connection reussie</div>';
+
         // Sélectionne la table disc entièrement
         $requete = $db->prepare (
 
@@ -36,6 +38,7 @@
 
 ?>
 
+
 <div class="d-flex justify-content-center">
     <h1>Liste des enregistrements de la table "disc"</h1>
 </div>
@@ -61,7 +64,7 @@
                     <strong>Année:</strong> <?=$disc -> disc_year?><br>
                     <strong>Genre:</strong> <?=$disc -> disc_genre?>
                 </p>
-                <a href="index.php?page=details&id=<?= $disc -> disc_id ?>"type="submit" class="btn btn-primary">Détails</a>
+                <a href="index.php?page=details&id=<?= $disc -> disc_id ?>" type="submit" class="btn btn-primary">Détails</a>
 
             </div>
 

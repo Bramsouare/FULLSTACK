@@ -9,19 +9,21 @@
         // indiquer à PDO de générer une exception à chaque fois qu'un problème est rencontré
         $db -> setAttribute (PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        echo "Connection reussie";
 
         // $_GET["id"]="1"
         // $_GET["page"]="details"
         // var_dump($_GET);
 
         $discid = $_GET['id'];
+
         $requete = $db -> prepare (
 
             "SELECT
                 *
             FROM
-                disc INNER JOIN artist ON disc.disc_id = artist.artist_id
+                disc INNER JOIN artist ON disc.artist_id = artist.artist_id
+            WHERE
+               disc_id = $discid 
             "
             );
 
@@ -89,13 +91,13 @@
           
             <label for="picture"><h5>Picture</h5></label>
             <div class="col-9 mb-4">
-                <img src="img/<?= $disc -> disc_picture ?>">
+                <img src="img/<?= $disc -> disc_picture ?>" style="width: 250px; height: auto;">
             </div>
 
             <div class="row d-flex justify-content-start my-2 mx-auto">
                 <a type="submit" class="btn btn-primary mr-2" href="index.php?page=update_form&id=<?= $disc -> disc_id ?>">Modifier</a>
-                <a type="submit" class="btn btn-primary mr-2"href="index.php?page=delete_form">Supprimer</a>
-                <a type="submit" class="btn btn-primary mr-2"href="index.php?page=vinyle">Retour</a>
+                <a type="submit" class="btn btn-primary mr-2"href="index.php?page=delete_form&id=<?= $disc -> disc_id ?>">Supprimer</a>
+                <a type="submit" class="btn btn-primary mr-2"href="index.php?page=vinyle&id=<?= $disc -> disc_id ?>">Retour</a>
             </div>  
 
         <?php } }; ?>

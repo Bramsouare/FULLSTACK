@@ -9,8 +9,6 @@
         // indiquer à PDO de générer une exception à chaque fois qu'un problème est rencontré
         $db -> setAttribute (PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        echo "Connection reussie";
-
         $idlien = $_GET["id"];
 
         // var_dump ($idlien);
@@ -97,11 +95,11 @@
 
                 <label for="picture"><h5>Picture</h5></label>
                 <!-- Champ caché pour stocker le chemin de l'image côté serveur -->
-                <input type="hidden" value="<?=$disc->disc_picture?>" name = "img">
-                <input type="file"  name = "photoo">
+                <input type="hidden" value="<?=$disc->disc_picture?>" name="image">
+                <input type="file" name="photo">
 
                 <div class="col-9 mb-4">
-                    <img src="img/<?= $disc -> disc_picture ?>">
+                    <img src="img/<?= $disc -> disc_picture ?>" style="width: 250px; height: auto;">
                 </div>
 
     <?php } }; ?>
@@ -109,7 +107,7 @@
 
                 <div class="row d-flex justify-content-start my-2 mx-auto">
                     <input type="submit" class="btn btn-primary mr-2" href="update_script.php" name="pushh" value="Modifier">
-                    <a type="button" class="btn btn-primary" href="details.php">Retour</a>
+                    <a type="button" class="btn btn-primary" href="index.php?page=details">Retour</a>
                 </div>
 
             </form>

@@ -8,9 +8,6 @@
         // indiquer à PDO de générer une exception à chaque fois qu'un problème est rencontré
         $db -> setAttribute (PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // alert
-        echo "Connection reussi !";
-
         // selectionne la table artist
         $requete = $db -> prepare(
 
