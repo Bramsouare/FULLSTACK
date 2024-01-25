@@ -1,9 +1,0 @@
-nom : fff 
-
-                        prenom : fhg
-
-                        email : souarei404@gmail.com
- 
-                        telephone : 0123456987
- 
-                        message : ifyift

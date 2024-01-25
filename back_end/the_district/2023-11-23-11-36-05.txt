@@ -1,9 +1,0 @@
-nom : tru 
-
-                        prenom : uoi
-
-                        email : souarei404@gmail.com
- 
-                        telephone : 05857832838
- 
-                        message : fdvfed

@@ -117,7 +117,6 @@ $(document).ready(function () {
             envoi = false;
             $("#adresse_manquant").show();
             e.preventDefault();
-         alert("c");
         }
         else {
             $("#adresse_manquant").hide();

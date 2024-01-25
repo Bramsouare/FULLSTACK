@@ -1,23 +1,40 @@
-<?php include 'header.php';?> <!--entête de page-->
-       
-<div class="index"> <!--lieux d'affichage-->
+<?php require_once 'header.php';?> 
+   
+    <?php
 
-    <div class=" d-flex justify-content-center"><!--affichage de mes cartes sur index-->
+        if (!isset($_GET['page']) || empty ($_GET['page']) || $_GET['page'] == 'acceuil')
+        {
+            require_once ('acceuil.php');
+        }
 
-        <div class="row col-12 col-md-9 d-flex justify-content-center" id="divcat"></div> 
+        else if ($_GET['page'] == 'categorie')
+        {
+            require_once ('categorie.php');
+        }
 
-    </div><br>     
-        
-    <div class="d-flex justify-content-around mt-3"> <!--bouton--> 
+        else if ($_GET['page'] == 'commande')
+        {
+            require_once ('commande.php');
+        }
 
-        <a href="categorie.php" class="btn btn-light btn-lg zoom col-5 col-md-1 btns">Suivant</a>
+        else if ($_GET['page'] == 'touslesplats')
+        {
+            require_once ('touslesplats.php');
+        }
 
-    </div>
+        else if ($_GET['page'] == 'contact')
+        {
+            require_once ('contact.php');
+        }
 
-</div>
-        
-    
-<?php include 'footer.php';?> <!--bas de page--> 
+        else if ($_GET['page'] == 'finaliser')
+        {
+            require_once ('finaliser.php');
+        }
+
+    ?>
+
+<?php require_once 'footer.php';?> 
     
 
 

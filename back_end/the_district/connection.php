@@ -33,6 +33,7 @@
         }
 
     }
+
     // capture et gestion de l'exception 
     catch (PDOException $e)
     {
@@ -57,6 +58,7 @@
             // retourne l'objet PDO 
             return $conn;
         }
+
         // capture et gestion de l'exception 
         catch (PDOException $e)
         {
@@ -64,4 +66,5 @@
             echo "Érreur de connection à la base de données: " . $e -> getMessage();
         }
     }
+    
 ?> 

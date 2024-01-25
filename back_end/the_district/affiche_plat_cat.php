@@ -24,13 +24,22 @@
         $id_categorie = 4;
 
         // sélectionne tout les plat et affecter la valeur dans la variable stmt
-        $stmt = $conn-> prepare ("SELECT * FROM plat WHERE id_categorie = :id_categorie");
+        $stmt = $conn -> prepare (
+            
+            "SELECT
+                * 
+            FROM
+                plat 
+            WHERE 
+                id_categorie = :id_categorie
+            "
+        );
 
         // bindValue lie une valeur a un paramètre
-        $stmt ->bindValue (':id_categorie', $id_categorie);
+        $stmt -> bindValue (':id_categorie', $id_categorie);
 
         // execution du code
-        $stmt ->execute ();
+        $stmt -> execute ();
 
         // charque ligne et recupérer sous forme de tableau
         while ($row = $stmt -> fetch())
@@ -41,6 +50,7 @@
 
 
     }
+
     // capture et gestion de l'exception 
     catch (PDOException $e)
     {
@@ -49,7 +59,7 @@
     }
 
     // connexion à la base de données et renvoie l'objet PDO 
-    function connect_database() 
+    function connect_database () 
     {
         try
         {
@@ -65,6 +75,7 @@
             // retourne l'objet PDO 
             return $conn;
         }
+
         // capture et gestion de l'exception 
         catch (PDOException $e)
         {

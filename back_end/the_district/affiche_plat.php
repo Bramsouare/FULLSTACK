@@ -20,7 +20,14 @@
         echo "Connecté avec succès à la base de données " . "<br><br><br>";
         
         // sélectionne tout les plat et affecter la valeur dans la variable stmt
-        $stmt = $conn -> query ("SELECT * FROM plat");
+        $stmt = $conn -> query (
+            
+            "SELECT
+                * 
+            FROM 
+                plat
+            "
+        );
 
         // retourne tout les plat du tableau en objet
         $tableau = $stmt -> fetchALL (PDO::FETCH_OBJ);
@@ -33,6 +40,7 @@
         }
 
     }
+
     // capture et gestion de l'exception 
     catch (PDOException $e)
     {
@@ -57,6 +65,7 @@
             // retourne l'objet PDO 
             return $conn;
         }
+
         // capture et gestion de l'exception 
         catch (PDOException $e)
         {

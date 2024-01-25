@@ -1,9 +1,0 @@
-nom : souare 
-
-                        prenom : ibrahima
-
-                        email : ibrahima@gmail.com
- 
-                        telephone : 0123456987
- 
-                        message : good

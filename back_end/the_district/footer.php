@@ -1,4 +1,4 @@
-<footer class="  col-12">
+<footer class="col-12">
 
     <div class="d-flex justify-content-center"> <!--les different logos sont au centre sur une même ligne-->
     
@@ -36,7 +36,9 @@
 
         var divcat = $('#divcat'); // l'endroit de l'affichage
     
-        var smplat=$(".smplat"); // la div de laffichage de carte
+        var smplat = $(".smplat"); // la div de laffichage de carte
+
+        var visuel = $("#visuel") 
         
         index.show(); // afficher l'index
 
@@ -59,6 +61,7 @@
 
             function chercher() { // ma fonction 
 
+                visuel.hide(); // masquer la page
                 index.hide(); // masquer l'index
                 result.empty(); // vider le resultat
                 smplat.empty(); // vider l'affichage de ses carte
@@ -83,7 +86,7 @@
                             <h2 class="card-title">${item.libelle}</h2>
                             <p class="card-text text-center">${item.description} <br>
                             Menu: ${item.prix} €</p>
-                            <a href="#" value="${item.id_plat}" class="btn btn-light d-flex justify-content-center idd">Commander</a>
+                            <a href="index.php?page=commande&id=${item.id_plat}" value="${item.id_plat}" class="btn btn-light d-flex justify-content-center idd">Commander</a>
                         </div>
                     </div></div>`;
 
@@ -98,47 +101,47 @@
     // AFFICHAGE CARTE CATEGORIES :
 
 
-            for (i = 0; i < categorie.length; i++) { // boucle qui parcour la longeur de categorie dans json 
+            // for (i = 0; i < categorie.length; i++) { // boucle qui parcour la longeur de categorie dans json 
 
-                var cat = categorie[i]; // et mis a jour pour crée dynamiquement les carte
+            //     var cat = categorie[i]; // et mis a jour pour crée dynamiquement les carte
 
-                // carte qui s'affiche sur l'index 
-                var card = $( `
-                    <div class="card custom-border bg zoom ck col-12 col-md-2 bg my-4 mx-5 " >
-                        <img src="asset/images_the_district/categorie/${cat.image}" class="card-img-top border-1 mt-3 img-fluid cards-img imgs" alt="${cat.libelle}">
-                        <div class="card-body text-center">
-                            <h2 value="${cat.id_categorie}"class="card-text text-wrap">${cat.libelle}</h2>
-                            <span class="alert text-danger"></span>
-                        </div>
-                    </div>`);
+            //     // carte qui s'affiche sur l'index 
+            //     var card = $( `
+            //         <div class="card custom-border bg zoom ck col-12 col-md-2 bg my-4 mx-5 " >
+            //             <img src="asset/images_the_district/categorie/${cat.image}" class="card-img-top border-1 mt-3 img-fluid cards-img imgs" alt="${cat.libelle}">
+            //             <div class="card-body text-center">
+            //                 <h2 value="${cat.id_categorie}"class="card-text text-wrap">${cat.libelle}</h2>
+            //                 <span class="alert text-danger"></span>
+            //             </div>
+            //         </div>`);
                     
-                var alert = card.find(".alert");
-                    alert.text(cat.active === 'Yes' ? '' : 'victime de son succès');
+            //     var alert = card.find(".alert");
+            //         alert.text(cat.active === 'Yes' ? '' : 'victime de son succès');
             
-                if (cat.active === "Yes") { 
-                    divcat.append(card); // afficher les carte de divcat
-                }
+            //     if (cat.active === "Yes") { 
+            //         divcat.append(card); // afficher les carte de divcat
+            //     }
                     
-                else {
+            //     else {
 
-                    // carte qui s'affiche avec le message d'alert
-                    vide = $( `
-                        <div class="card custom-border bg zoom  col-12 col-md-2 bg my-4 mx-5 " >
-                            <img src="asset/images_the_district/categorie/${cat.image}" class="card-img-top border-1 mt-3 img-fluid cards-img imgs" alt="${cat.libelle}">
-                            <div class="card-body text-center">
-                            <h2 value="${cat.id_categorie}"class="card-text text-wrap">${cat.libelle}</h2>
-                            <span class="alert text-danger"></span>
-                        </div>
-                    </div>`);
+            //         // carte qui s'affiche avec le message d'alert
+            //         vide = $( `
+            //             <div class="card custom-border bg zoom  col-12 col-md-2 bg my-4 mx-5 " >
+            //                 <img src="asset/images_the_district/categorie/${cat.image}" class="card-img-top border-1 mt-3 img-fluid cards-img imgs" alt="${cat.libelle}">
+            //                 <div class="card-body text-center">
+            //                 <h2 value="${cat.id_categorie}"class="card-text text-wrap">${cat.libelle}</h2>
+            //                 <span class="alert text-danger"></span>
+            //             </div>
+            //         </div>`);
 
-                    divcat.append(vide); // afficher les carte de divcat
+            //         divcat.append(vide); // afficher les carte de divcat
 
-                    var alert = vide.find(".alert");
-                    alert.text(cat.active === 'Yes' ? '' : 'victime de son succès');
-                };
+            //         var alert = vide.find(".alert");
+            //         alert.text(cat.active === 'Yes' ? '' : 'victime de son succès');
+            //     };
                     
             
-            };
+            // };
 
 
     // CLICK CARTE CATEGORIE :
@@ -146,7 +149,7 @@
 
             $(".ck") .click (function (){ // quand l'élément ck est cliqué 
 
-                index.hide(); // masquer l'index
+                visuel.hide(); // masquer l'index
 
                 // trouvé la valeur sur l'élément cliqué puis l'affecte dans la variable 
                 var platid = $(this).find(".card-text").attr("value");
@@ -171,7 +174,7 @@
                                     <h2 class="card-title">${un.libelle}</h2>
                                     <p class="card-text">${un.description} <br>
                                     Menu: ${un.prix} €</p>
-                                    <a href="#" value="${un.id_plat}" class="btn btn-light d-flex justify-content-center idd">Commander</a>
+                                    <a href="index.php?page=commande&id=${un.id_plat}" value="${un.id_plat}" class="btn btn-light d-flex justify-content-center idd">Commander</a>
                                 </div>
                             </div>`;
 
@@ -179,6 +182,7 @@
                         result.append(card);
 
                     };
+                    
 
                 });
 
@@ -188,75 +192,69 @@
     // CLICK COMMANDE :
 
 
-            $(document).on("click", ".idd", function(e) { // evenement clic sur le document 
+            // $(document).on("click", ".idd", function(e) { // evenement clic sur le document 
             
-                e.preventDefault(); // evite que le document soit charger quand un lien et cliqué
+            //     e.preventDefault(); // evite que le document soit charger quand un lien et cliqué
                 
-                var ids = $(this).attr("value"); // récupère la valeur de l'élément cliqué
+            //     var ids = $(this).attr("value"); // récupère la valeur de l'élément cliqué
 
-                pushcommande(ids); // appele la fonction avec la valeur de l'élément
+            //     pushcommande(ids); // appele la fonction avec la valeur de l'élément
                 
-            });
+            // });
 
-            function pushcommande(ids) { // déclare la fonction avec un paramètre ids
+            // function pushcommande(ids) { // déclare la fonction avec un paramètre ids
 
                 
-                divplat.empty(); // cache les carte de plats
-                result.empty(); // vide les contenue des variables
-                smplat.empty(); 
-                form.show(); // affiche le formulaire
+            //     divplat.empty(); // cache les carte de plats
+            //     result.empty(); // vide les contenue des variables
+            //     smplat.empty(); 
+            //     form.show(); // affiche le formulaire
 
-                console.log(ids);
-                $.each(plat, function(groupe, individuel){ // parcour chaque élément de json 
+            //     console.log(ids);
+            //     $.each(plat, function(groupe, individuel){ // parcour chaque élément de json 
 
-                    if (ids == individuel.id_plat){ // compare si l'id et comparable a l'id plat
+            //         if (ids == individuel.id_plat){ // compare si l'id et comparable a l'id plat
 
-                        // création de ou des la cartes
-                        var carte = ` 
-                            <div class="card custom-border bg zoom col-12 col-md-2 mb-3 my-3 mx-4 d-flex justify-content-center">
-                                <img src="asset/images_the_district/food/${individuel.image}" class="card-img-top border-1 mt-3 img-fluid card-img imgs" alt="${individuel.libelle}">
-                                <div class="card-body text-center">
-                                    <h2 class="card-title">${individuel.libelle}</h2>
-                                    <p class="card-text">${individuel.description} <br>
-                                    Menu: ${individuel.prix} €</p>
-                                    <a href="#" class="btn btn-light d-flex justify-content-center">Quantité: 1</a>
-                                </div>
-                            </div>`;
-                        commande.append(carte); // affiche les cartes
+            //             // création de ou des la cartes
+            //             var carte = ` 
+            //                 <div class="card custom-border bg zoom col-12 col-md-2 mb-3 my-3 mx-4 d-flex justify-content-center">
+            //                     <img src="asset/images_the_district/food/${individuel.image}" class="card-img-top border-1 mt-3 img-fluid card-img imgs" alt="${individuel.libelle}">
+            //                     <div class="card-body text-center">
+            //                         <h2 class="card-title">${individuel.libelle}</h2>
+            //                         <p class="card-text">${individuel.description} <br>
+            //                         Menu: ${individuel.prix} €</p>
+            //                         <a href="#" class="btn btn-light d-flex justify-content-center">Quantité: 1</a>
+            //                     </div>
+            //                 </div>`;
+            //             commande.append(carte); // affiche les cartes
 
 
-                    };
-                });
-            };
+            //         };
+            //     });
+            // };
 
 
     // AFFICHAGE CARTE PLATS :
 
     
-            for (i = 0; i < plat.length; i++) { // une boucle qui parcour tout les plats
+            // for (i = 0; i < plat.length; i++) { // une boucle qui parcour tout les plats
 
-                var plt = plat[i]; // mis a jour pour crée dynamiquement les cartes
+            //     var plt = plat[i]; // mis a jour pour crée dynamiquement les cartes
 
-                // carte qui s'affiche sur la page
-                var card = `
-                <div class="card custom-border bg zoom col-12 col-md-2 mb-2 my-2 mx-3">
-                    <img src="asset/images_the_district/food/${plt.image}" class="card-img-top border-1 mt-3 img-fluid card-img timg" alt="${plt.libelle}">
-                    <div class="card-body text-center">
-                        <h3 class="card-title">${plt.libelle}</h3>
-                        <p class="card-text">${plt.description} <br>
-                        Menu: ${plt.prix} €</p>
-                        <a href="#" value="${plt.id_plat}" class="btn btn-light
-                        d-flex justify-content-center idd">Commander</a>
-                    </div>
-                </div></div>`;
-                divplat.append(card);
-            };
-
-           
-
-          
-
-           
+            //     // carte qui s'affiche sur la page
+            //     var card = `
+            //     <div class="card custom-border bg zoom col-12 col-md-2 mb-2 my-2 mx-3">
+            //         <img src="asset/images_the_district/food/${plt.image}" class="card-img-top border-1 mt-3 img-fluid card-img timg" alt="${plt.libelle}">
+            //         <div class="card-body text-center">
+            //             <h3 class="card-title">${plt.libelle}</h3>
+            //             <p class="card-text">${plt.description} <br>
+            //             Menu: ${plt.prix} €</p>
+            //             <a href="#" value="${plt.id_plat}" class="btn btn-light
+            //             d-flex justify-content-center idd">Commander</a>
+            //         </div>
+            //     </div></div>`;
+            //     divplat.append(card);
+            // };
 
         });
 
@@ -264,7 +262,6 @@
 
 </script>
 
- 
 </body>
 
 </html>
