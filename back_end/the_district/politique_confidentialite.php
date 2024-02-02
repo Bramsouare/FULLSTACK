@@ -1,4 +1,4 @@
-<div class="row col-12 d-flex justify-content-center text-center">
+<div class="row col-12 d-flex justify-content-center text-center my-5">
 
     <h1><strong>Politique de confidentialité</strong></h1><br>
 

@@ -20,18 +20,6 @@
 
     <title>Accueil</title>
 
-    <style>
-
-        body 
-        {
-            background-image: url("asset/images_the_district/fondecran.png");
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }
-
-    </style>
-
 </head>
 
 <body>

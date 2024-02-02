@@ -10,9 +10,9 @@
 
             <nav class="navbar navbar-expand-sm navbar-light d-flex justify-content-end ecriture"> <!--la barre de navigation-->
 
-                <ul class="navbar-nav"> <!-- items de la barre de navigation-->
+                <ul class="navbar-nav items"> <!-- items de la barre de navigation-->
 
-                    <li class="nav-item">
+                    <li class="nav-item ">
                         <a class="nav-link active" aria-current="page" href="index.php?page=mentions"><strong>Mentions legales</strong></a>
                     </li>
                     <li class="nav-item">
