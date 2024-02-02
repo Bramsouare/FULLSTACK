@@ -1,6 +1,5 @@
 <?php
-
-    var_dump($_SESSION);
+   
     require_once 'vendor/autoload.php';
 
     use PHPMailer\PHPMailer\PHPMailer;
@@ -8,9 +7,7 @@
 
     $mail = new PHPMailer (true);
 
-    $mail -> isSMTP ();
-
-    $mail -> Host = 'localhost';
+    $mail -> Host = '127.0.0.1';
 
     $mail -> SMTPAuth = false;
 
@@ -24,7 +21,14 @@
 
     $mail -> Subject = 'Votre commande est en cours de préparations';
 
-    $mail -> $body = "Bonjour" . $_SESSION["nomPrenom"] . "<br><br> Une fois votre commande prête, le livreur vous contactera très rapidement merci de votre confiance.";
+    $mail -> Body = "Bonjour " . $_SESSION["nomPrenom"] . "<br><br> 
+
+        Une fois votre commande prête, le livreur vous contactera sur le numéro: " . $_SESSION["telephones"] . 
+
+        "<br><br>et vous l'ivrera à l'adresse: " .$_SESSION["adresses"] . 
+
+        "<br><br> merci de votre confiance."
+    ;
 
     if ($mail) 
     {
@@ -47,11 +51,12 @@
 
         <h1><strong>Félicitations commande finalisée</strong></h1>
 
-    </div>
+    </div><br><br>
 
-    <div class="d-flex justify-content-around"> <!--l'espacement autour du texte et identique-->
 
-        <p>La commande est en cours...<br> une fois la préparation terminée le livreur vous contactera. merci et à bientôt.</p>
+    <div class="d-flex justify-content-around text-center"> <!--l'espacement autour du texte et identique-->
+
+        <p>La commande est en cours...<br><br> Une fois la préparation terminée, le livreur vous contactera. <br><br>Merci et à bientôt.</p>
 
     </div>
 

@@ -16,22 +16,25 @@
                     $nombres ++ ;
         ?>
             
-            <div class="card custom-border bg zoom ck col-12 col-md-2 bg my-4 mx-5">
-                <img class="card-img-top border-1 mt-3 img-fluid cards-img imgs" src="asset/images_the_district/categorie/<?=$categorie->image?>" alt="<?=$categorie->libelle?>">
+                
+            <div class="card custom-border bg zoom ck col-12 col-md-2 bg my-4 mx-5" >
+                <img class="card-img-top border-1 mt-3 img-fluid cards-img imgs" src="asset/images_the_district/categorie/<?= $categorie -> image ?>" alt="<?= $categorie -> libelle ?>">
                 <div class="card-body text-center">
-                    <h2 value="<?= $categorie -> id ?>" class="card-text"><?= $categorie -> libelle ?></h2>
-                    <span class="alert text-danger"><?= $categorie -> active ?></span>
+                    <h2 class="card-title"><?= $categorie -> libelle ?></h2>
+                    <span class="alert text-danger" data-id="<?= $categorie -> id ?>"><?= $categorie -> active ?></span>
+                    <span data-id="<?= $categorie -> id ?>" class="alert gg"></span>
                 </div>
             </div>
 
         <?php
 
-            if ($nombres == 6)
-            {
-                $nombres = 0;
-                break;
-            }
-            }};
+                    if ($nombres == 6)
+                    {
+                        $nombres = 0;
+                        break ;
+                    }
+                }
+            };
 
         ?>
 

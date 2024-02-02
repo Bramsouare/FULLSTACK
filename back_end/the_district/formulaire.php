@@ -1,5 +1,6 @@
 <?php 
 
+    session_start();
 
     if (isset($_POST["envoyer"])) // vérification si le formulaire a été soumis avec un champ vide ou pas via la méthode post 
     { 
@@ -127,17 +128,16 @@
             echo "Formulaire soumis avec succès. Les informations ont bien été enregistrées dans le fichier $nomfichier.";
 
             // redirection sur la page 
-            header("Location: finaliser.php");
+            header("Location: index.php?page=demande");
             exit();
 
         } 
         else // sinon
         { 
-
             unset($_SESSION["auth"]); // destruction de la session
             session_destroy(); // pour la detruire proprement
 
-            header("Location:contact.php"); // redirection sur la page de contact
+            header("Location:index.php?page=contact"); // redirection sur la page de contact
             exit();
         };
 
@@ -228,7 +228,7 @@
         // si toutes les conditions appliquent vrai alors...
         if (nomPrenom($nomPrenom) == true && emails($emails) == true && telephones($telephones) == true && adresses($adresses) == true) 
         {
-            
+
             $_SESSION['nomPrenom'] = $nomPrenom ;
 
             $_SESSION['emails'] = $emails;
@@ -252,7 +252,7 @@
             
             // message d'alerte
             echo "Formulaire soumis avec succès.";
-
+            
             // redirection sur la page 
             header("Location: index.php?page=finaliser");
             exit();

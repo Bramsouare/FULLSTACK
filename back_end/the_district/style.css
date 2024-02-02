@@ -73,6 +73,11 @@ video {
     font-size: 140%;
 }
 
+.ecriture {
+
+    font-size: 100%;
+}
+
 .btns {
 
     color: #970747;
@@ -118,7 +123,17 @@ video {
     .tcard{
 
         height: 9%;
-    };
+    }
+    
+    .ecrt{
+
+        font-size: 80%;
+    }
+
+    .ecriture {
+
+        font-size: 50%;
+    }
     
 };
 
